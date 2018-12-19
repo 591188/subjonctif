@@ -179,7 +179,6 @@ function generate_question() {
         reponse_correcte += terminaison_subj(sujet);
     }
     
-    console.log(question_out);
     question_out.innerHTML = sujet + " (" + verbe + ") ";
 }
 
