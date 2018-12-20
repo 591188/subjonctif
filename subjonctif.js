@@ -183,7 +183,7 @@ function generate_question() {
 }
 
 function check_answer() {
-    if (response_in.value == reponse_correcte) {
+    if (response_in.value.trim() == reponse_correcte) {
         feedback_out.innerHTML = "C'est correct!";
         generate_question();
     } else {
