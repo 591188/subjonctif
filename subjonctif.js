@@ -170,20 +170,22 @@ function generate_question() {
     } else if (verbe == "être") {
         reponse_correcte = subj_etre(sujet);
     } else {
+        var racine;
         if (sujet == SUJET_NOUS || sujet == SUJET_VOUS) {
-            reponse_correcte = racine_imparfait_pour_subj(verbe);
+            racine = racine_imparfait_pour_subj(verbe);
         } else {
-            reponse_correcte = racine_subj(verbe);
+            racine = racine_subj(verbe);
         }
+        var terminaison = terminaison_subj(sujet);
         
-        reponse_correcte += terminaison_subj(sujet);
+        reponse_correcte = (racine + terminaison).normalize("NFC");
     }
     
     question_out.innerHTML = sujet + " (" + verbe + ") ";
 }
 
 function check_answer() {
-    if (response_in.value.trim() == reponse_correcte) {
+    if (response_in.value.trim().toLowerCase().normalize("NFC") == reponse_correcte) {
         feedback_out.innerHTML = "C'est correct!";
         generate_question();
     } else {
